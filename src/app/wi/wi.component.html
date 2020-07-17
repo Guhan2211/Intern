@@ -1,0 +1,60 @@
+
+  <h1>Warehouse Items</h1>
+<table  class="mat-elevation-z8 mat-table">
+<tr  class="mat-header-row">
+<th class="mat-header-cell" >Warehouse</th>
+<th class="mat-header-cell" >Items</th>
+<th class="mat-header-cell" ></th>
+</tr>
+
+<tr class="mat-row" *ngFor="let i of wh">
+  <td class="mat-cell">{{i.name}}</td>
+  <td  class="mat-cell">
+    <span *ngFor="let s of i.stock">{{s.item.name}}({{s.quantity}}),</span>
+  </td >
+  <td class="mat-cell"></td>
+
+</tr>
+</table>
+
+
+<div>
+  <form style="padding-top: 15px;" (ngSubmit)=updateStock(f) #f="ngForm">
+
+
+  <mat-form-field style="padding-left: 5px;" appearance="legacy">
+    <mat-label  >Warehouse</mat-label>
+  <mat-select name="whId" ngModel required>
+    <mat-option *ngFor="let w of wh;let i=index" [value]="i">
+      {{w.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field style="padding-left: 5px;" appearance="legacy">
+  <mat-label>Item</mat-label>
+<mat-select name="itemId" ngModel required>
+  <mat-option *ngFor="let it of items;let x=index" [value]="x">
+    {{it.name}}
+  </mat-option>
+</mat-select>
+</mat-form-field>
+
+<mat-form-field style="padding-left: 5px;" appearance="legacy">
+  <mat-label>Quantity</mat-label>
+  <input
+  name="quantity"
+  ngModel
+  required
+  pattern="^[1-9]+[0-9]*$"
+  min="0" matInput type="number">
+
+</mat-form-field >
+
+   <button style="padding-left: 5px;"
+   [disabled]="f.invalid"
+   type="submit" style="cursor: pointer;"  mat-raised-button color="primary">Update</button>
+
+
+  </form>
+</div>

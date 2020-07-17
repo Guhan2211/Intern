@@ -1,28 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+//import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
 import {WarehouseService} from './warehouse.service';
 import {ItemService} from './item.service';
+import {FormsModule} from '@angular/forms';
 
+import {DemoMaterialModule} from './material.module';
 
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { ItemsComponent } from './items/items.component';
+import { WarehousesComponent } from './warehouses/warehouses.component';
+import { WiComponent } from './wi/wi.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ItemsComponent,
+    WarehousesComponent,
+    WiComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    DemoMaterialModule,
+    FormsModule
+
   ],
   providers: [WarehouseService,ItemService],
-  exports: [MatTableModule,MatButtonModule,MatIconModule],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

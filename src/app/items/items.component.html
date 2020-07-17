@@ -1,0 +1,62 @@
+
+
+<div>
+
+  <h1>Items<button  mat-raised-button style="margin-left:50px"
+    (click)="toggler()" color="basic">
+    Add | +
+  </button></h1>
+  <table   class="mat-elevation-z8 mat-table">
+  <tr class="mat-header-row">
+
+  <th  class="mat-header-cell" >Item Id</th>
+  <th  class="mat-header-cell">Item Name</th>
+  <th   class="mat-header-cell">Price</th>
+  <th  class="mat-header-cell"></th>
+    <th  class="mat-header-cell"></th>
+  </tr>
+
+  <tr class="mat-row" *ngFor="let i of items;let indexOfelement=index">
+    <td class="mat-cell">{{indexOfelement}}</td>
+    <td class="mat-cell">{{i.name}}</td>
+    <td class="mat-cell">{{i.price|currency}}</td>
+    <td class="mat-cell"> <button style="cursor: pointer;" (click)="onEdit(indexOfelement)"
+      mat-icon-button color="accent">
+       <mat-icon>create</mat-icon></button></td>
+    <td class="mat-cell">  <button (click)=delete(indexOfelement) style="cursor: pointer;" mat-icon-button color="warn"><mat-icon>delete_sweep</mat-icon></button></td>
+  </tr>
+</table>
+  <form style="padding-top: 15px;" (ngSubmit)="onAddItem(f)" #f="ngForm" [hidden]="!toggleEditMode">
+
+          <mat-form-field style="padding-left: 5px;" appearance="legacy">
+            <mat-label>Item Name</mat-label>
+            <input
+            name="name"
+            ngModel
+            required
+            matInput>
+          </mat-form-field>
+
+
+          <mat-form-field style="padding-left: 5px;" appearance="legacy">
+            <mat-label>Price</mat-label>
+            <input
+            name="price"
+            ngModel
+            required
+            pattern="^[1-9]+[0-9]*$"
+            min="0" matInput type="number">
+
+          </mat-form-field>
+
+
+         <button style="padding-left: 5px;"
+         [disabled]="f.invalid"
+         type="submit" style="cursor: pointer;"  mat-raised-button color="primary"> {{editMode?'Update':'Add'}}</button>
+
+
+        </form>
+
+
+
+  </div>
